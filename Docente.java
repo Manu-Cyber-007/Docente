@@ -27,7 +27,7 @@ public class Docente extends Persona {
 
     public double calcularBono() { return salary * 0.10; }
     public double calcularSueldoAnual() { return salary * 12 + calcularBono(); }
-
+     //presentar docente//
     @Override
     public void presentar() {
         System.out.println("=== Docente ===");
@@ -38,7 +38,7 @@ public class Docente extends Persona {
         System.out.println("Bono (10%): " + calcularBono());
         System.out.println("Sueldo anual con bono: " + calcularSueldoAnual());
     }
-
+     //modificar docente//
     @Override
     public void modificar(Scanner sc) {
         System.out.println("¿Qué desea modificar?");
@@ -69,7 +69,7 @@ public class Docente extends Persona {
         presentar();
     }
 
-    // Método de creación
+    // ingresar docente//
     public static Docente crearDocente(Scanner sc) {
         System.out.print("Nombre: ");
         String name = sc.nextLine();
@@ -82,4 +82,5 @@ public class Docente extends Persona {
         return new Docente(name, age, subject, salary);
     }
 }
+
 
