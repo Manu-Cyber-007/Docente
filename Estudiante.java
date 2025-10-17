@@ -16,12 +16,21 @@ public class Estudiante extends Persona {
         this.grades = new double[grade * 2]; // 2 notas por grado
     }
 
-    // Métodos getter/setter
-    public String getCareer() { return career; }
-    public void setCareer(String career) { this.career = career; }
-    public int getGrade() { return grade; }
-    public void setGrade(int grade) { this.grade = grade; }
-    public String getNumberId() { return numberId; }
+    // Métodos getter/setter//
+    public String getCareer() { 
+        return career; }
+    
+    public void setCareer(String career) { 
+        this.career = career; }
+    
+    public int getGrade() { 
+        return grade; }
+    
+    public void setGrade(int grade) { 
+        this.grade = grade; }
+    
+    public String getNumberId() { 
+        return numberId; }
 
     public void setNota(int i, double value) { grades[i] = value; }
     public int getCantidadNotas() { return grades.length; }
@@ -30,7 +39,7 @@ public class Estudiante extends Persona {
         for (double g : grades) sum += g;
         return sum / grades.length;
     }
-
+     //presentarse estudiante//
     @Override
     public void presentar() {
         System.out.println("=== Estudiante ===");
@@ -40,7 +49,7 @@ public class Estudiante extends Persona {
         System.out.println("Grado: " + grade);
         System.out.println("Número de estudiante: " + numberId);
     }
-
+   //modificar dato erroneo//
     @Override
     public void modificar(Scanner sc) {
         System.out.println("¿Qué desea modificar?");
@@ -67,7 +76,7 @@ public class Estudiante extends Persona {
         presentar();
     }
 
-    // Método de creación
+    // Ingresar Estudiante//
     public static Estudiante crearEstudiante(Scanner sc) {
         System.out.print("Nombre: ");
         String name = sc.nextLine();
@@ -82,3 +91,4 @@ public class Estudiante extends Persona {
         return new Estudiante(name, age, career, grade, numberId);
     }
 }
+
