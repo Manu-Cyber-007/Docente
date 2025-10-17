@@ -1,5 +1,7 @@
 package Lab7;
 
+import java.util.Scanner;
+
 public class Estudiante extends Persona {
     private String career;
     private int grade;
@@ -14,27 +16,18 @@ public class Estudiante extends Persona {
         this.grades = new double[grade * 2]; // 2 notas por grado
     }
 
-    public String getNumberId() {
-        return numberId;
-    }
+    // Métodos getter/setter
+    public String getCareer() { return career; }
+    public void setCareer(String career) { this.career = career; }
+    public int getGrade() { return grade; }
+    public void setGrade(int grade) { this.grade = grade; }
+    public String getNumberId() { return numberId; }
 
-    public int getGrade() {
-        return grade;
-    }
-
-    public int getCantidadNotas() {
-        return grades.length;
-    }
-
-    public void setGrade(int i, double value) {
-        grades[i] = value;
-    }
-
+    public void setNota(int i, double value) { grades[i] = value; }
+    public int getCantidadNotas() { return grades.length; }
     public double calcularPromedio() {
         double sum = 0;
-        for (double g : grades) {
-            sum += g;
-        }
+        for (double g : grades) sum += g;
         return sum / grades.length;
     }
 
@@ -46,5 +39,46 @@ public class Estudiante extends Persona {
         System.out.println("Carrera: " + career);
         System.out.println("Grado: " + grade);
         System.out.println("Número de estudiante: " + numberId);
+    }
+
+    @Override
+    public void modificar(Scanner sc) {
+        System.out.println("¿Qué desea modificar?");
+        System.out.println("1. Nombre\n2. Edad\n3. Carrera\n4. Grado");
+        int opcion = sc.nextInt(); sc.nextLine();
+        switch (opcion) {
+    case 1:
+        setName(sc.nextLine());
+        break;
+    case 2:
+        setAge(sc.nextInt());
+        sc.nextLine();
+        break;
+    case 3:
+        setCareer(sc.nextLine());
+        break;
+    case 4:
+        setGrade(sc.nextInt());
+        sc.nextLine();
+        break;
+    default:
+        System.out.println("Opción no válida");
+}
+        presentar();
+    }
+
+    // Método de creación
+    public static Estudiante crearEstudiante(Scanner sc) {
+        System.out.print("Nombre: ");
+        String name = sc.nextLine();
+        System.out.print("Edad: ");
+        int age = sc.nextInt(); sc.nextLine();
+        System.out.print("Carrera: ");
+        String career = sc.nextLine();
+        System.out.print("Grado (1 a 5): ");
+        int grade = sc.nextInt(); sc.nextLine();
+        System.out.print("Número de estudiante (ID): ");
+        String numberId = sc.nextLine();
+        return new Estudiante(name, age, career, grade, numberId);
     }
 }
