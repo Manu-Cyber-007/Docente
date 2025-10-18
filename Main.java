@@ -28,7 +28,8 @@ public class Main {
 
         // Presentación automática
         System.out.println("\n=== Presentaciones Automáticas ===");
-        for (Persona p : personas) p.presentar();
+        for (Persona p : personas) 
+        p.presentar();
 
         // Modificación de datos
         String modificar;
@@ -52,6 +53,38 @@ public class Main {
                 }
             }
         } while (modificar.equals("si"));
+
+        // Opción de consultar promedio
+        System.out.print("\n¿Desea consultar el promedio de un estudiante? (si/no): ");
+        String prom = sc.nextLine().trim().toLowerCase();
+
+        if (prom.equals("si")) {
+            System.out.print("Ingrese el número de estudiante: ");
+            String idBuscado = sc.nextLine();
+            boolean encontrado = false;
+
+            for (Persona p : personas) {
+                if (p instanceof Estudiante) {
+                    Estudiante e = (Estudiante) p;
+                    if (e.getNumberId().equals(idBuscado)) {
+                        encontrado = true;
+                        int cantidadNotas = e.getCantidadNotas();
+                        System.out.println("El estudiante debe ingresar " + cantidadNotas + " notas.");
+                        for (int j = 0; j < cantidadNotas; j++) {
+                            System.out.print("Ingrese la nota " + (j + 1) + ": ");
+                            double nota = sc.nextDouble();
+                            e.setNota(j, nota);
+                        }
+                        System.out.println("El promedio del estudiante es: " + e.calcularPromedio());
+                        break;
+                    }
+                }
+            }
+
+            if (!encontrado) {
+                System.out.println("No se encontró un estudiante con ese número.");
+            }
+        }
 
         System.out.println("\nFin del programa.");
         sc.close();
